@@ -52,7 +52,7 @@ export class ChartComponent implements OnInit {
       labels: this.labels.split(','),
       colors: [
         {
-          backgroundColor: ['#3f51b5', '#f44336', 'green', 'purple', 'orange', 'white', 'black']
+          backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#8cd3ff', '#ccc5a8']
         }
       ]
     };

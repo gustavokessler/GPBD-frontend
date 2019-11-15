@@ -1,1 +1,8 @@
-<app-chart data="{{data}}" labels="{{label}}" [type]="'pie'"></app-chart>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-tab-group fxFlex="80">
+        <mat-tab label="NoSql">
+            <app-nosql></app-nosql>
+        </mat-tab>
+        <mat-tab label="Sql"> SQL </mat-tab>
+    </mat-tab-group>
+</div>
