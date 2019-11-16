@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { Label } from 'ng2-charts';
 
 interface Chart {
   type: ChartType;
@@ -20,32 +21,31 @@ export class ChartComponent implements OnInit {
   @Input() labels: any;
   @Input() type: ChartType;
 
-  chart: Chart;
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
 
-  pieChartData: Array<number> = [];
-
-  // options = {
-  //   responsive: true,
-  //   legend: {
-  //     position: 'bottom'
-  //   },
-  //   plugins: {
-  //     labels: {
-  //       render: (args) => {
-  //         return args.value + ' horas';
-  //       },
-  //       fontColor: '#fff',
-  //       fontFamily: 'Roboto',
-  //       textShadow: true
-  //     }
-  //   }
-  // };
-
-  // colors = [
-  //   {
-  //     backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#8cd3ff', '#ccc5a8']
-  //   }
-  // ];
+  public pieChartLabels: Label[];
+  public pieChartData: number[];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  // public pieChartPlugins = [pluginDataLabels];
+  public pieChartColors = [
+    {
+      backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#ccc5a8', '#8cd3ff'],
+    },
+  ];
 
 
   constructor() {
@@ -53,23 +53,8 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chart = {
-      type: this.type,
-      data: this.data,
-      options: {
-        responsive: true,
-        legend: {
-          position: 'bottom'
-        },
-        plugins: [pluginDataLabels]
-      },
-      labels: this.labels,
-      colors: [
-        {
-          backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#8cd3ff', '#ccc5a8']
-        }
-      ]
-    };
+    this.pieChartLabels = this.labels;
+    this.pieChartData = this.data;
 
 
   }

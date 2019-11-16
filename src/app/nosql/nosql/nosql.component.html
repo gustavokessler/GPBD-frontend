@@ -5,8 +5,7 @@
     <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(ArtistPerCountry$ | async) as data">
       <p class="mat-h2" style="text-align: center;">Artistas por Países</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
-      <app-chart [data]="percentArtists(data.data.count.slice(1, 6))" [labels]="name(data.data.country.slice(1,6))"
-        [type]="'pie'">
+      <app-chart [data]="percentArtists(data.data.count)" [labels]="name(data.data.country)" [type]="'pie'">
       </app-chart>
     </div>
 
@@ -14,33 +13,37 @@
     <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerCountry$ | async) as data">
       <p class="mat-h2" style="text-align: center;">Músicas por Países</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
-      <app-chart [data]="percentSongs(data.data.count.slice(1, 7))" [labels]="name(data.data.country.slice(1,6))"
-        [type]="'pie'">
+      <app-chart [data]="percentSongs(data.data.count)" [labels]="name(data.data.country)" [type]="'pie'">
       </app-chart>
     </div>
 
     <!-- Música por ano -->
     <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data; else loading">
-      <p class="mat-h2" style="text-align: center;">Música por ano</p>
+      <p class="mat-h2" style="text-align: center;">Músicas por ano</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
-      <app-chart [data]="data.data.count.slice(1, 8)" [labels]="data.data.year.slice(1,8)" [type]="'bar'">
-      </app-chart>
+      <app-line-chart [data]="songsPerYear(data.data.count)" [labels]="data.data.year.slice(1,-1)">
+      </app-line-chart>
     </div>
 
     <!-- Países por ano -->
-    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data; else loading">
-      <p class="mat-h2" style="text-align: center;">Música por ano</p>
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(countriesPerYear$ | async) as data">
+      <p class="mat-h2" style="text-align: center;">Músicas por ano em cada país</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
-      <app-chart [data]="data.data.count.slice(1, 8)" [labels]="data.data.year.slice(1,8)" [type]="'line'">
-      </app-chart>
+      <app-line-chart [data]="data.data.countries" [labels]="data.data.year">
+      </app-line-chart>
     </div>
 
   </div>
 
-  <ng-template #loading>
-    <div fxFlex="99" fxFlex.gt-md="49" fxLayout="row" fxLayoutAlign="center center">
-      <!-- <mat-spinner></mat-spinner> -->
+  <div *ngIf="(top50$ | async) as data"  fxLayout="row wrap" fxLayoutAlign="center center" fx style="margin-top: 10px;">
+    <div fxFlex="100">  
+      <p class="mat-h2" style="text-align: center;">Top 50 Artistas</p>
+      <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
     </div>
-  </ng-template>
-  
+
+    <mat-list fxFlex="50" role="list">
+      <mat-list-item *ngFor="let item of data.data.name; let i = index" role="listitem">{{item}} : {{data.data.songCount[i]}} </mat-list-item>
+    </mat-list>
+  </div>
+
 </div>
