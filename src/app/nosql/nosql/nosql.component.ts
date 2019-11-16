@@ -13,7 +13,7 @@ export class NosqlComponent implements OnInit {
 
   ArtistPerCountry$ = this.nosqlService.getArtistsPerCountry();
   songPerCountry$ = this.nosqlService.getSongsPerCountry();
-  // songPerYear$ = this.nosqlService.getSongsPerYear();
+  songPerYear$ = this.nosqlService.getSongsPerYear();
 
   constructor(private nosqlService: NosqlService) { }
 

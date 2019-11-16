@@ -14,8 +14,17 @@ export interface Response<T> {
   time: string;
 }
 
+export const A = {
+  data: {
+    year: [1021, 2002, 2003, 2004, 1998, 1972, 2002, 2003, 2004, 1998, 1972],
+    count: [0, 31254, 6546, 3154, 9878, 5248, 2002, 2003, 2004, 1998, 1972],
+  },
+  time: '152'
+};
 
-export const urlmongo = 'https://t1pgbd.localtunnel.me/mongo/';
+
+
+export const urlmongo = 'https://t1pgbd2.localtunnel.me/mongo/';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +43,10 @@ export class NosqlService {
     return this.http.get<any>(urlmongo + 'songspercountry', {});
   }
 
-  // getSongsPerYear(): Observable<any> {
-  //   return this.http.get<any>(urlmongo + 'songspercountry', {});
-  // }
+  getSongsPerYear(): Observable<any> {
+    return this.http.get<any>(urlmongo + 'tracksperyear', {});
+  }
 
 
 }
+

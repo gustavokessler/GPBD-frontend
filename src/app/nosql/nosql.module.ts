@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { SharedModule } from '../shared/shared/shared.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SharedModule } from '../shared/shared/shared.module';
     FlexLayoutModule,
     MatToolbarModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule
   ],
   exports: [NosqlComponent]
 })

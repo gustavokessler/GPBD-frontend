@@ -1,8 +1,8 @@
 <div class="container">
 
-  <div FxLayout="row" style="margin-top: 10px;">
+  <div fxLayout="row wrap" fxLayoutGap="1%" fx style="margin-top: 10px;">
     <!-- Artista por países -->
-    <div fxFlex="50" *ngIf="(ArtistPerCountry$ | async) as data">
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(ArtistPerCountry$ | async) as data">
       <p class="mat-h2" style="text-align: center;">Artistas por Países</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
       <app-chart [data]="percentArtists(data.data.count.slice(1, 6))" [labels]="name(data.data.country.slice(1,6))"
@@ -11,17 +11,36 @@
     </div>
 
     <!-- Músicas por países -->
-    <div fxFlex="50" *ngIf="(songPerCountry$ | async) as data">
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerCountry$ | async) as data">
       <p class="mat-h2" style="text-align: center;">Músicas por Países</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
-      <app-chart [data]="percentSongs(data.data.count.slice(1, 6))" [labels]="name(data.data.country.slice(1,6))"
+      <app-chart [data]="percentSongs(data.data.count.slice(1, 7))" [labels]="name(data.data.country.slice(1,6))"
         [type]="'pie'">
       </app-chart>
     </div>
-    
+
+    <!-- Música por ano -->
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data; else loading">
+      <p class="mat-h2" style="text-align: center;">Música por ano</p>
+      <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
+      <app-chart [data]="data.data.count.slice(1, 8)" [labels]="data.data.year.slice(1,8)" [type]="'bar'">
+      </app-chart>
+    </div>
+
+    <!-- Países por ano -->
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data; else loading">
+      <p class="mat-h2" style="text-align: center;">Música por ano</p>
+      <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
+      <app-chart [data]="data.data.count.slice(1, 8)" [labels]="data.data.year.slice(1,8)" [type]="'line'">
+      </app-chart>
+    </div>
+
   </div>
 
-
-
-
-  </div>
+  <ng-template #loading>
+    <div fxFlex="99" fxFlex.gt-md="49" fxLayout="row" fxLayoutAlign="center center">
+      <!-- <mat-spinner></mat-spinner> -->
+    </div>
+  </ng-template>
+  
+</div>
