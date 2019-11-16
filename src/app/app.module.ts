@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NosqlModule } from './nosql/nosql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NosqlModule } from './nosql/nosql.module';
     BrowserAnimationsModule,
     MatTabsModule,
     FlexLayoutModule,
-    NosqlModule
+    NosqlModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

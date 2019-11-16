@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
-import 'chartjs-plugin-labels';
-// tslint:disable-next-line:class-name
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
 interface Chart {
   type: ChartType;
   data: Array<number>;
@@ -24,6 +24,30 @@ export class ChartComponent implements OnInit {
 
   pieChartData: Array<number> = [];
 
+  // options = {
+  //   responsive: true,
+  //   legend: {
+  //     position: 'bottom'
+  //   },
+  //   plugins: {
+  //     labels: {
+  //       render: (args) => {
+  //         return args.value + ' horas';
+  //       },
+  //       fontColor: '#fff',
+  //       fontFamily: 'Roboto',
+  //       textShadow: true
+  //     }
+  //   }
+  // };
+
+  // colors = [
+  //   {
+  //     backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#8cd3ff', '#ccc5a8']
+  //   }
+  // ];
+
+
   constructor() {
     /*-*/
   }
@@ -31,31 +55,22 @@ export class ChartComponent implements OnInit {
   ngOnInit(): void {
     this.chart = {
       type: this.type,
-      data: this.data.split(',').map((e) => e = +e),
+      data: this.data,
       options: {
         responsive: true,
         legend: {
           position: 'bottom'
         },
-        plugins: {
-          labels: {
-            render: (args) => {
-              return args.value + ' horas';
-            },
-            fontColor: '#fff',
-            fontFamily: 'Roboto',
-            textShadow: true
-          }
-        }
+        plugins: [pluginDataLabels]
       },
-
-      labels: this.labels.split(','),
+      labels: this.labels,
       colors: [
         {
           backgroundColor: ['#5cbae6', '#b6d957', '#fac364', '#93b9c6', '#d998cb', '#8cd3ff', '#ccc5a8']
         }
       ]
     };
-  }
 
+
+  }
 }

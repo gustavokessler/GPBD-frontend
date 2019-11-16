@@ -1,29 +1,27 @@
 <div class="container">
-  <mat-toolbar></mat-toolbar>
-  
-  <div FxLayout="row" style="margin-top: 10px;"> 
-    <div fxFlex="50">
-      <p class="mat-h3" style="text-align: center;">Titulo do Gráfico</p>
-      <app-chart data="{{data}}" labels="{{label}}" [type]="'pie'"></app-chart>
+
+  <div FxLayout="row" style="margin-top: 10px;">
+    <!-- Artista por países -->
+    <div fxFlex="50" *ngIf="(ArtistPerCountry$ | async) as data">
+      <p class="mat-h2" style="text-align: center;">Artistas por Países</p>
+      <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
+      <app-chart [data]="percentArtists(data.data.count.slice(1, 6))" [labels]="name(data.data.country.slice(1,6))"
+        [type]="'pie'">
+      </app-chart>
     </div>
 
-    <div fxFlex="50">
-      <p class="mat-h3" style="text-align: center;">Titulo do Gráfico</p>
-      <app-chart data="{{data}}" labels="{{label}}" [type]="'pie'"></app-chart>
+    <!-- Músicas por países -->
+    <div fxFlex="50" *ngIf="(songPerCountry$ | async) as data">
+      <p class="mat-h2" style="text-align: center;">Músicas por Países</p>
+      <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
+      <app-chart [data]="percentSongs(data.data.count.slice(1, 6))" [labels]="name(data.data.country.slice(1,6))"
+        [type]="'pie'">
+      </app-chart>
     </div>
-  </div>
-
-  <div FxLayout="row" style="margin-top: 10px;"> 
-    <div fxFlex="50">
-      <p class="mat-h3" style="text-align: center;">Titulo do Gráfico</p>
-      <app-chart data="{{data}}" labels="{{label}}" [type]="'pie'"></app-chart>
-    </div>
-
-    <div fxFlex="50">
-      <p class="mat-h3" style="text-align: center;">Titulo do Gráfico</p>
-      <app-chart data="{{data}}" labels="{{label}}" [type]="'pie'"></app-chart>
-    </div>
+    
   </div>
 
 
-</div>
+
+
+  </div>
