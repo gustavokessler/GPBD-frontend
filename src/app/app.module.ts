@@ -7,6 +7,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NosqlModule } from './nosql/nosql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MysqlModule } from './mysql/mysql.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     FlexLayoutModule,
     NosqlModule,
-    HttpClientModule
+    HttpClientModule,
+    MysqlModule
   ],
   providers: [],
   bootstrap: [AppComponent]

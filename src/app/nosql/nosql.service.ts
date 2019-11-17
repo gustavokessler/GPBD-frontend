@@ -24,7 +24,7 @@ export const A = {
 
 
 
-export const urlmongo = 'https://t1pgbd4.localtunnel.me/mysql/';
+export const urlmongo = 'https://t1pgbd4.localtunnel.me/mongo/';
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +46,9 @@ export class NosqlService {
   getSongsPerYear(): Observable<any> {
     return this.http.get<any>(urlmongo + 'tracksperyear', {});
   }
-  getCountriesPerYear(): Observable<any> {
-    return this.http.get<any>('https://t1pgbd4.localtunnel.me/mysql/countriesperyear', {});
-  }
+  // getCountriesPerYear(): Observable<any> {
+  //   return this.http.get<any>('https://t1pgbd4.localtunnel.me/mysql/countriesperyear', {});
+  // }
 
   getTop50(): Observable<any> {
     return this.http.get<any>(urlmongo + 'top50artists', {});

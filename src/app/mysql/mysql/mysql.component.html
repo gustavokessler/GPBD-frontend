@@ -18,7 +18,7 @@
     </div>
 
     <!-- Música por ano -->
-    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data;">
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(songPerYear$ | async) as data; else loading">
       <p class="mat-h2" style="text-align: center;">Músicas por ano</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
       <app-line-chart [data]="songsPerYear(data.data.count)" [labels]="data.data.year.slice(1,-1)">
@@ -26,12 +26,12 @@
     </div>
 
     <!-- Países por ano -->
-    <!-- <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(countriesPerYear$ | async) as data">
+    <div fxFlex="100" fxFlex.gt-md="49" *ngIf="(countriesPerYear$ | async) as data">
       <p class="mat-h2" style="text-align: center;">Músicas por ano em cada país</p>
       <p class="mat-caption" style="text-align: center;">Tempo de busca: {{data.time}} ms</p>
       <app-line-chart [data]="data.data.countries" [labels]="data.data.year">
       </app-line-chart>
-    </div> -->
+    </div>
 
   </div>
 
